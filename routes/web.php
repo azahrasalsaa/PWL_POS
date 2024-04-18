@@ -32,3 +32,4 @@ Route::put('/user/ubah_simpan/{id}', [UserController::class,'ubah_simpan'])->nam
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ROute::get('/kategori', [KategoriController::class, 'index']);
