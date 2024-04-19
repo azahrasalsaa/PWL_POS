@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\KategoriModel;
 
@@ -44,3 +45,4 @@ Route::get('/kategori/update/{id}', [KategoriController::class, 'update'])->name
 Route::put('/kategori/save_update/{id}', [KategoriController::class, 'save_update'])->name('/kategori/save_update');
 
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('/kategori/delete');
+Route::get('/', [WelcomeController::class,'index']);

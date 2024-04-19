@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+@extends ('layouts.template')
+
+@section('content')
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Halo, apakabar!!!</h3>
+      <div class="card-tools"></div>
+    </div>
+    <div class="card-body">
+      Selamat datang semua, ini adalah halaman utama dari aplikasi ini.
+    </div>
+  </div>
+@endsection
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -1735,4 +1749,4 @@
 <script src="{{ asset('adminlte/dist/js/pages/dashboard2.js') }}"></script>
 
 </body>
-</html>
+</html> --}}

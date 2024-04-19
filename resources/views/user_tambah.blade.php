@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Form Tambah Data User</h1>
-    <a href="{{ route('/user') }}">Kembali</a>
+    {{-- <a href="{{ route('/user') }}">Kembali</a> --}}
     <form method="post" action="{{ route('/user/tambah_simpan') }}">
         {{ csrf_field() }}
         <label>Username</label>
