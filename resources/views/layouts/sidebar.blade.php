@@ -39,27 +39,27 @@
     </li>
     <li class="nav-header">Data Barang</li>
     <li class="nav-item">
-        <a href="{{ url('/category') }}" class="nav-link {{ ($activeMenu ==
-    'category')?'active' : '' }} ">
+        <a href="{{ url('/kategori') }}" class="nav-link {{ ($activeMenu ==
+    'kategori')?'active' : '' }} ">
             <i class="nav-icon far fa-bookmark"></i>
-            <p>Category Barang</p>
+            <p>Kategori Barang</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('/item') }}" class="nav-link {{ ($activeMenu == 'item') ? 'active' : '' }}">
+            <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'barang') ? 'active' : '' }}">
                 <i class="nav-icon far fa-list-alt"></i>
-                <p>Goods Data</p>
+                <p>Barang Data</p>
             </a>
         </li>
         <li class="nav-header">Data Transaksi</li>
         <li class="nav-item">
             <a href="{{ url('/stok') }}" class="nav-link {{ ($activeMenu == 'stok') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cubes"></i>
-                <p>Stock of Goods</p>
+                <p>Stok Barang</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('/sales') }}" class="nav-link {{ ($activeMenu == 'sales') ? 'active' : '' }}">
+            <a href="{{ url('/penjualan') }}" class="nav-link {{ ($activeMenu == 'penjualan') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-cash-register"></i>
                 <p>Sales Transaction</p>
             </a>
@@ -67,3 +67,5 @@
 </ul>
 </nav>
 </div>
+
+  
