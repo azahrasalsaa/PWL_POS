@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title">{{ $page->title }}</h3>
+        <h3 class="card-title"></h3>
         <div class="card-tools">
             <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
         </div>
