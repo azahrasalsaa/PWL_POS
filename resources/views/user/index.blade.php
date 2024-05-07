@@ -51,56 +51,52 @@
 @endpush
 
 @push('js')
-    <script>
-        $(document).ready(function() {
-    var dataUser = $('#table_user').DataTable({
-        serverSide: true,
-        ajax: {
-            "url": "{{ url('user/list') }}",
-            "dataType": "json",
-            "type": "POST",
-            "data": function (d) {
-                d._token = '{{ csrf_token() }}'; // Include CSRF token
-                d.level_id = $('#level_id').val();
-            }
-        },
-        columns: [
-            {
-                data: "DT_RowIndex",
-                className: "text-center",
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: "username",
-                className: "",
-                orderable: true,
-                searchable: true
-            },
-            {
-                data: "nama",
-                className: "",
-                orderable: true,
-                searchable: true
-            },
-            {
-                data: "level.level_nama",
-                className: "",
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: "action",
-                className: "",
-                orderable: false,
-                searchable: false
-            }
-        ]
-    });
+<script>
     
-    $('#level_id').on('change', function() {
-        dataUser.ajax.reload();
-    });
-});
+    $(document).ready(function(){
+        var dataUser = $('#table_user').DataTable({
+            serverSide: true,
+            ajax: {
+                "url": "{{ url('user/list') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data": function(d) {
+                    d.level_id = $('#level_id').val();
+                }
+            },
+            columns: [
+                    {
+                        data: "DT_RowIndex", //nomor urut dari laravel datatable addindexcolumn()
+                        classname: "text-center",
+                        orderable: false,
+                        searchable: false
+                    },{
+                        data: "username",
+                        classname: "",
+                        orderable: true, //orderable true jika ingin kolom bisa diurutkan
+                        searchable: true //searchable true jika ingin kolom bisa dicari
+                    },{
+                        data: "nama",
+                        classname: "",
+                        orderable: true, //orderable true jika ingin kolom bisa diurutkan
+                        searchable: true //searchable true jika ingin kolom bisa dicari
+                    },{
+                        data: "level.level_nama",
+                        classname: "",
+                        orderable: false, //orderable true jika ingin kolom bisa diurutkan
+                        searchable: false //searchable true jika ingin kolom bisa dicari
+                    },{
+                        data: "action",
+                        classname: "",
+                        orderable: false, //orderable true jika ingin kolom bisa diurutkan
+                        searchable: false //searchable true jika ingin kolom bisa dicari
+                    }
+                ]
+            });
+
+            $('#level_id').on('change', function(){
+                dataUser.ajax.reload();
+            });
+        });
     </script>
-@endpush
+    @endpush

@@ -61,9 +61,8 @@
                 "dataType": "json",
                 "type": "POST",
                 "data": function (d) {
-                d._token = '{{ csrf_token() }}'; // Include CSRF token
-                d.level_id = $('#level_id').val();
-            }
+                    d.user_id = $('#user_id').val();
+                }
             },
             columns: [
                 {

@@ -86,4 +86,65 @@
                         <button type="button" class="btn btn-primary btn-sm" id="add" onclick="addData()" >Tambah Barang</button>
                     </div>
                 </div>
-                <div class="form
+                <div class="form-group row">
+                    <label class="col-2 control-label col-form-label"></label>
+                    <div class="col-10">
+                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        <a class="btn btn-sm btn-default ml-1" href="{{ url('penjualan') }}">Kembali</a>
+                    </div>
+                </div>
+            </form>
+            @endempty
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('css')
+@endpush
+
+@push('js')
+<script>
+    var i = 1;
+    function addData() {
+        i++;
+        $('#detail').append(`
+            <div id="row`+i+`">
+                <div class="form-group row">
+                    <label class="col-2 control-label col-form-label">Kode Barang</label>
+                    <div class="col-10">
+                        <select class="form-control" id="barang_id`+i+`" name="barang_id[]" required>
+                            <option value="">- Pilih Barang -</option>
+                            @foreach($barang as $item)
+                            <option value="{{ $item->barang_id }}">{{ $item->barang_kode }} - {{ $item->barang_nama }}</option>
+                            @endforeach
+                        </select>
+                        @error('barang_id')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 control-label col-form-label">Jumlah</label>
+                    <div class="col-10">
+                        <input type="number" class="form-control" id="jumlah`+i+`" name="jumlah[]" value="{{ old('jumlah[]') }}" required>
+                        @error('jumlah')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 control-label col-form-label"></label>
+                    <div class="col-10">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeData(`+i+`)">Hapus</button>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
+    function removeData(id) {
+        $('#row'+id).remove();
+    }
+    
+</script>
+@endpush

@@ -1,46 +1,72 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="card card-outline card-primary">
-    <div class="card-header">
-        <h3 class="card-title">{{ $page->title }}</h3>
-        <div class="card-tools"></div>
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-tools">
+                <a href="{{ url('level/create')}}" class="btn btn-sm btn-primary mt-1">Tambah</a>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+            <table class="table table-bordered table-striped table-hover table-sm" id="table_level">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>level_kode</th>
+                        <th>level_nama</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-    <div class="card-body">
-        <form method="POST" action="{{ url('level') }}" class="form-horizontal">
-            @csrf
-            <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Level Kode</label>
-                <div class="col-11">
-                    <input type="text" class="form-control" id="level_kode" name="level_kode" value="{{ old('level_kode') }}" required>
-                    @error('level_kode')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Level Nama</label>
-                <div class="col-11">
-                    <input type="text" class="form-control" id="level_nama" name="level_nama" value="{{ old('level_nama') }}" required>
-                    @error('level_nama')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-1 control-label col-form-label"></label>
-                <div class="col-11">
-                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                    <a class="btn btn-sm btn-default ml-1" href="{{ url('level') }}">Kembali</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 @endsection
 
 @push('css')
+
 @endpush
 
 @push('js')
+    <script>
+        $(document).ready(function() {
+            var dataLevel = $('#table_level').DataTable({
+                serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
+                ajax: {
+                    "url": "{{ url('level/list') }}",
+                    "dataType": "json",
+                    "type": "POST"
+                },
+                columns: [
+                    {
+                    data: "DT_RowIndex", // nomor urut dari laravel datatable addIndexColumn()
+                    className: "text-center",
+                    orderable: false,
+                    searchable: false
+                    },{
+                    data: "level_kode", 
+                    className: "",
+                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                    },{
+                    data: "level_nama", 
+                    className: "",
+                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari
+                    },{
+                    data: "aksi", 
+                    className: "",
+                    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                    searchable: false // searchable: true, jika ingin kolom ini bisa dicari
+                    }
+                ]
+            });
+        });
+</script>
 @endpush

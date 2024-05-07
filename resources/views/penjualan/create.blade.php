@@ -58,6 +58,8 @@
 @endpush
 
 @push('js')
+@endpush
+
 <script>
     var i = 1;
     function addData() {
@@ -100,4 +102,3 @@
         $('#row'+id).remove();
     }
 </script>
-@endpush

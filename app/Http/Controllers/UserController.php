@@ -10,6 +10,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
+        
         public function tambah()
         {
         return view('user_tambah');
@@ -50,7 +51,7 @@ class UserController extends Controller
             return redirect('/user');
         }
 
-         // Menampilkan halaman awal user 
+        
         public function index() 
         {
         $breadcrumb = (object) [ 
@@ -69,8 +70,7 @@ class UserController extends Controller
         return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
         }
 
-        // Menampilkan data user dalam bentuk json untuk datatable (nomer 7)
-        // Retrieve user data in json form for datatables
+        
     public function list(Request $request)
     {
         $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
@@ -188,6 +188,5 @@ public function destroy(string $id)
 
 
 }
-
 
 

@@ -71,4 +71,4 @@
 @endpush
 
 @push('js')
-@endpushs
+@endpush

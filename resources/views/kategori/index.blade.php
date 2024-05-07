@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header">
-        <h3 class="card-title"></h3>
+        <h3 class="card-title">{{ $page->title }}</h3>
         <div class="card-tools">
             <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
         </div>
@@ -42,8 +42,6 @@
                 "url": "{{ url('kategori/list') }}",
                 "dataType": "json",
                 "type": "POST"
-                d._token = '{{ csrf_token() }}'; // Include CSRF token
-                d.level_id = $('#level_id').val();
             },
             columns: [
                 {
@@ -76,3 +74,26 @@
 </script>
 @endpush
 
+{{-- @extends('layouts.app') --}}
+
+{{-- Customize layout sections --}}
+{{-- 
+@section('subtitle', 'Kategori')
+@section('content_header_title', 'Home')
+@section('content_header_subtitle', 'Kategori')
+
+@section('content')
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Manage Kategori</div>
+            <div class="card-body">
+                {{ $dataTable->table() }}   
+                <a href={{ route('kategori.create') }} class="btn btn-primary">Tambah Kategori</a>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@push('scripts')
+    {{ $dataTable->scripts() }}
+@endpush --}}
