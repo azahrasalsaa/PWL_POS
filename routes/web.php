@@ -8,31 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\BarangController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/level', [LevelController::class, 'index']);
-// Route::get('/level/add', [LevelController::class, 'add'])->name('/level/add');
-// Route::post('/level/add_save', [LevelController::class, 'add_save'])->name('/level/add_save');
-
-// Route::get('/kategori', [KategoriController::class, 'index']);
-// Route::get('/user', [UserController::class, 'index'])->name('/user');
-
-// Route::get('/user/add', [UserController::class, 'add'])->name('/user/add');
-// Route::get('/user/update/{id}', [UserController::class, 'update'])->name('/user/update');
-// Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('/user/delete');
-
-// Route::post('/user/add_save', [UserController::class, 'add_save'])->name('/user/add_save');
-
-// Route::put('/user/update_save/{id}', [UserController::class, 'update_save'])->name('/user/update_save');
-
-// Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
-// Route::post('/kategori', [KategoriController::class, 'store']);
-// Route::get('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
-// Route::put('/kategori/update_save/{id}', [KategoriController::class, 'update_save'])->name('kategori.update_save');
-// Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
@@ -109,6 +87,25 @@ Route::group(['prefix' => 'kategori'], function () {
     Route::delete('/{id}', [KategoriController::class, 'destroy']);
 });
 
+Route::get('login',[AuthController::class,'index'])->name('login');
+Route::get('register',[AuthController::class,'register'])->name('register');
+Route::post('proses_login',[AuthController::class,'proses_login'])->name('proses_login');
+Route::get('logout',[AuthController::class,'logout'])->name('logout');
+Route::post('proses_register',[AuthController::class,'proses_register'])->name('proses_register');
+
+// kita atur juga untuk middleware menggunakan group pada routing
+// didalamnya terdapt group untuk mengecek kondisi login
+// jika user yang login merupakan admin maka akan diarahkan ke AdminController
+// jika user yang login merupakan manager maka akan diarahkan ke UserController
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::group(['middleware' => ['cek_login:1']], function(){
+        Route::resource('admin',AdminController::class);
+    });
+    Route::group(['middleware' => ['cek_login:2']], function(){
+        Route::resource('manager',ManagerController::class);
+    });
+});
 
 
 
